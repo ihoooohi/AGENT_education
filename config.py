@@ -1,0 +1,1 @@
+QIANWEN_API_KEY = 'sk-3444250feb104de5acc16d911a91bb6f' 

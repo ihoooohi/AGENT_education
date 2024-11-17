@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教学流程图分析</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>教学流程图分析工具</h1>
+            <p class="subtitle">上传您的教学流程图PDF，获取AI分析和优化建议</p>
+        </div>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <div class="upload-box" id="dropZone">
+                    <div class="upload-content">
+                        <div class="upload-icon" id="uploadIcon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 16L12 8M12 8L15 11M12 8L9 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 15V16C3 18.2091 4.79086 20 7 20H17C19.2091 20 21 18.2091 21 16V15M3 15V8C3 5.79086 4.79086 4 7 4H17C19.2091 4 21 5.79086 21 8V15M3 15L8.58579 9.41421C9.36683 8.63317 10.6332 8.63316 11.4142 9.41421L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="success-icon hidden" id="successIcon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="progress-circle hidden" id="progressCircle">
+                            <svg class="progress" viewBox="0 0 32 32">
+                                <circle cx="16" cy="16" r="14" stroke-width="4"/>
+                            </svg>
+                        </div>
+                        <p id="uploadText">拖拽PDF文件到这里或 <label for="pdfFile" class="upload-label">选择文件</label></p>
+                        <input type="file" id="pdfFile" accept=".pdf" hidden>
+                    </div>
+                </div>
+                <button id="analyzeBtn" class="analyze-btn hidden" onclick="analyzeFlowchart()">开始分析</button>
+            </div>
+
+            <div class="pdf-preview-section hidden" id="pdfPreviewSection">
+                <div class="pdf-container">
+                    <canvas id="pdfViewer"></canvas>
+                </div>
+            </div>
+
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <div class="spinner"></div>
+                <p>正在分析中，请稍候...</p>
+            </div>
+
+            <div id="analysisResult" class="analysis-result"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/flowchart.js') }}"></script>
+</body>
+</html> 
